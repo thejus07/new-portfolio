@@ -6,9 +6,11 @@
   --font-semi: 600;
   /*===== Colors =====*/
   --hue-color: 160;
-  --first-color: hsl(var(--hue-color), 84%, 39%);
-  --first-color-light: hsl(var(--hue-color), 84%, 60%);
-  --first-color-dark: hsl(var(--hue-color), 84%, 25%);
+  --first-color: hsl(var(--hue-color), 84%, 39%); /* Emerald green: #10b981 */
+  --first-color-light: hsl(var(--hue-color), 70%, 60%); /* Lighter for gradient */
+  --first-color-dark: hsl(var(--hue-color), 84%, 25%); /* Darker for gradient */
+  --glossy-gradient: linear-gradient(145deg, var(--first-color-light), var(--first-color) 60%, var(--first-color-dark));
+  --glossy-gradient-hover: linear-gradient(145deg, hsl(var(--hue-color), 75%, 65%), hsl(var(--hue-color), 84%, 42%) 60%, var(--first-color-dark));
   --second-color: #fff;
   --bg-color: #0a0a0a;
   --text-color: #fff;
@@ -86,12 +88,14 @@ img {
   position: absolute;
   content: "";
   width: 64px;
-  height: 0.18rem;
+  height: 0.25rem;
   left: 0;
   right: 0;
   margin: auto;
   top: 2rem;
-  background-color: var(--first-color);
+  background: var(--glossy-gradient);
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.1),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.1);
 }
 
 .section {
@@ -151,10 +155,12 @@ img {
   position: absolute;
   content: "";
   width: 100%;
-  height: 0.18rem;
+  height: 0.25rem;
   left: 0;
   top: 2rem;
-  background-color: var(--first-color);
+  background: var(--glossy-gradient);
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.1),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.1);
 }
 .nav__logo {
   color: var(--text-color);
@@ -170,10 +176,12 @@ img {
   position: absolute;
   content: "";
   width: 100%;
-  height: 0.18rem;
+  height: 0.25rem;
   left: 0;
   top: 2rem;
-  background-color: var(--first-color);
+  background: var(--glossy-gradient);
+  box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.1),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.1);
 }
 
 /*=== Show menu ===*/
@@ -224,17 +232,26 @@ img {
 }
 
 /*BUTTONS*/
-.button {
+.button, .contact__button {
   display: inline-block;
-  background-color: var(--first-color);
+  background: var(--glossy-gradient);
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+              inset 0 1px 1px hsla(0, 0%, 100%, 0.2),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   padding: 0.75rem 2.5rem;
   font-weight: var(--font-semi);
   border-radius: 0.5rem;
-  transition: 0.3s;
 }
-.button:hover {
-  background-color: var(--first-color-dark);
+.button:hover, .contact__button:hover {
+  background: var(--glossy-gradient-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 1px hsla(0, 0%, 100%, 0.2),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.2);
 }
 
 /*===== SKILLS =====*/
@@ -265,17 +282,22 @@ img {
 }
 
 .skill-item {
-    background-color: var(--first-color);
-    color: var(--bg-color); /* Ensure text is visible on accent bg */
+    background: var(--glossy-gradient);
+    border: none;
+    box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.15),
+                inset 0 -1px 1px hsla(0, 0%, 0%, 0.15);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: var(--normal-font-size);
     font-weight: var(--font-semi);
-    transition: transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .skill-item:hover {
-    background-color: var(--first-color-dark);
+    background: var(--glossy-gradient-hover);
+    transform: translateY(-2px);
 }
 
 /* Responsive layout for skills */
@@ -632,11 +654,20 @@ img {
 }
 
 .tech-tag {
-    background: var(--first-color);
-    color: var(--bg-color);
+    background: var(--glossy-gradient);
+    border: none;
+    box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.15),
+                inset 0 -1px 1px hsla(0, 0%, 0%, 0.15);
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;
     font-size: var(--smaller-font-size);
+}
+
+.tech-tag:hover {
+    background: var(--glossy-gradient-hover);
+    transform: translateY(-2px);
 }
 
 .project-links {
@@ -732,6 +763,7 @@ img {
 .cloud-platform i {
     color: var(--first-color);
     animation: float 3s ease-in-out infinite;
+    text-shadow: 0 0 8px hsla(var(--hue-color), 84%, 39%, 0.7);
 }
 
 .cloud-platform i:nth-child(2) {
@@ -753,6 +785,11 @@ img {
     animation: rotate 20s linear infinite;
 }
 
+.devops-circle path {
+    stroke: var(--first-color);
+    filter: drop-shadow(0 0 3px hsla(var(--hue-color), 84%, 39%, 0.8));
+}
+
 /* Container Icons Animation */
 .container-icons {
     position: absolute;
@@ -765,6 +802,7 @@ img {
 .container-icons i {
     color: var(--first-color);
     animation: pulse 2s ease-in-out infinite;
+    text-shadow: 0 0 8px hsla(var(--hue-color), 84%, 39%, 0.7);
 }
 
 .container-icons i:nth-child(2) {
@@ -811,6 +849,8 @@ img {
 }
 
 .icon-circle {
+    fill: var(--bg-color);
+    stroke: url(#glossyStrokeGradient);
     filter: drop-shadow(0 0 5px var(--first-color));
 }
 
@@ -832,4 +872,16 @@ img {
         width: 150px;
         height: 150px;
     }
+}
+
+/* Using CSS gradient for cursor dot as SVG defs might be complex here */
+.cursor-dot {
+  background: var(--glossy-gradient);
+   box-shadow: inset 0 1px 1px hsla(0, 0%, 100%, 0.15),
+              inset 0 -1px 1px hsla(0, 0%, 0%, 0.15);
+}
+
+/* Keep outline simpler or use radial gradient */
+.cursor-outline {
+  background: radial-gradient(circle, hsla(var(--hue-color), 84%, 39%, 0.1) 0%, hsla(var(--hue-color), 84%, 39%, 0.4) 100%);
 }
