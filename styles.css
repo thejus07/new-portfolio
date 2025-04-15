@@ -649,3 +649,43 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Email link styles */
+.contact__info {
+    margin-bottom: 2rem;
+}
+
+.contact__subtitle {
+    font-size: var(--h2-font-size);
+    color: var(--first-color);
+    margin-bottom: 1rem;
+}
+
+.contact__text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    font-size: var(--normal-font-size);
+    transition: color 0.3s ease;
+}
+
+.contact__text:hover {
+    color: var(--first-color);
+}
+
+.contact__icon {
+    font-size: 1.5rem;
+}
+
+/* Responsive layout for contact section */
+@media screen and (min-width: 768px) {
+    .contact__container {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+    }
+    
+    .contact__info {
+        margin-bottom: 0;
+    }
+}
