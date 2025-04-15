@@ -55,3 +55,46 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+/* ===== CONTACT FORM SUBMIT ===== */
+const submitButton = document.getElementById('submit-button');
+const nameInput = document.getElementById('contact-name');
+const emailInput = document.getElementById('contact-email');
+const messageInput = document.getElementById('contact-message');
+const recipientEmail = 'thejusm07@gmail.com'; // Your email address
+
+if (submitButton && nameInput && emailInput && messageInput) {
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default button behavior
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (!name || !email || !message) {
+            alert('Please fill in all fields.'); // Simple validation
+            return;
+        }
+
+        const subject = `Contact Form Submission from ${name}`;
+        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+        // Encode components for the mailto link
+        const encodedSubject = encodeURIComponent(subject);
+        const encodedBody = encodeURIComponent(body);
+
+        // Construct the mailto link
+        const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+
+        // Open the default email client
+        window.location.href = mailtoLink;
+
+        // Optional: Clear the form after attempting to send
+        // nameInput.value = '';
+        // emailInput.value = '';
+        // messageInput.value = '';
+    });
+}
+
+/* ===== MOUSE CURSOR EFFECT ===== */
+// ... existing mouse cursor effect code ...
